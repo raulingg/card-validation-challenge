@@ -1,17 +1,18 @@
 const validator = {
   isValid(cardNumber) {
-    const numbers = Array.from(cardNumber).map(Number);
+    // Step 0: Starting at the rightmost side
+    const numbers = Array.from(cardNumber).map(Number).reverse();
     console.log(numbers);
 
     // Step 2: double all digits which are in even positions
     const doubledNumbers = numbers.map((digit, idx) =>
-      idx % 2 == 0 ? digit * 2 : digit
+      idx % 2 != 0 ? digit * 2 : digit
     );
     console.log(doubledNumbers);
 
     // Step 3: sum the digits of all numbers, from previous step, greater than 9
     const nextNumbers = doubledNumbers.map((number) =>
-      number > 9 ? 1 + (number % 10) : number
+      number > 9 ? number - 9 : number
     );
     console.log(nextNumbers);
 
