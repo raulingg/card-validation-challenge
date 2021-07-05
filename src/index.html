@@ -9,23 +9,29 @@
     <header></header>
     <main>
       <h1 class="title">Card Validator</h1>
-      <p class="subtitle">This implements the Luhn algorithm (AKA Module 10)</p>
+      <p class="subtitle">This implements the Luhn npm (AKA Module 10)</p>
       <div class="row">
-        <div class="viewcard">
-          <div class="logos">
-            <img
-              class="chipLogo"
-              src="./assets/credit-card-chip-svgrepo-com.svg"
-              alt="chip logo"
-            />
-            <img
-              class="providerLogo"
-              src="./assets/mc_vrt_pos.svg"
-              alt="mastercard logo"
-            />
+        <div id="creditCardContainer" class="container">
+          <div id="creditCardFront" class="creditcard front">
+            <div class="logos">
+              <img
+                class="chipLogo"
+                src="./assets/credit-card-chip-svgrepo-com.svg"
+                alt="chip logo"
+              />
+              <img
+                class="providerLogo"
+                src="./assets/mc_vrt_pos.svg"
+                alt="mastercard logo"
+              />
+            </div>
+            <p class="creditcard__label">Card Number</p>
+            <output id="masked-credit-card" class="creditcard__number">
+            </output>
           </div>
-          <p class="viewcard__label">Card Number</p>
-          <output id="masked-credit-card" class="viewcard__number"> </output>
+          <div id="creditCardBack" class="creditcard back">
+            <div class="creditcard__bar"></div>
+          </div>
         </div>
         <div class="form">
           <input
