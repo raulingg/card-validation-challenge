@@ -32,10 +32,11 @@ html:focus-within {
 
 /* Set core body defaults */
 body {
+  background-color: #f9f9f9;
   min-height: 100vh;
   text-rendering: optimizeSpeed;
   line-height: 1.5;
-  font-family: 'Raleway';
+  font-family: 'Raleway', sans-serif;
   display: flex;
 }
 
@@ -76,13 +77,16 @@ select {
 }
 
 main {
-  background-color:#8080801a;
   margin: auto;
-  padding: 4rem;
+  padding: 1rem;
+  width: 100%;
+  height: 100%;
 }
 
 .title {
-  font-size: 3.2rem;
+  font-size: 2.4rem;
+  font-weight: 600;
+  text-align: center;
 }
 
 .subtitle {
@@ -91,20 +95,26 @@ main {
 
 .row {
   display: flex;
+  flex-wrap: wrap;
   justify-content: center;
+  align-items: center;
+  align-content: center;
 }
 
 .container {
   position: relative;
   perspective: 200rem;
-  width: 500px;
-  height: 300px;
+  width: 100%;
+  height: 54vw;
+  max-width: 400px;
+  max-height: 251px;
   margin-right: 2rem;
 }
 
 .creditcard {
   position: absolute;
   width: 100%;
+  max-width: 400px;
   height: 100%;
   transition: transform 1.25s ease-in-out 0.25s;
   backface-visibility: hidden;
@@ -160,4 +170,53 @@ main {
   font-weight: 800;
   font-size: 28px;
   color: whitesmoke;
+}
+
+.form {
+  padding: 1rem;
+  max-width: 440px;
+  min-width: 400px;
+  flex-grow: 1;
+}
+
+.form-controls {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-controls:not(:last-child), .form-fieldset:not(:last-child) {
+  margin-bottom: 1.25rem;
+}
+
+.form-controls label {
+  font-size: 14px;
+  color: hsl(0deg 0% 50%);
+}
+
+.form-controls input {
+  padding-left: 12px;
+  height: 3rem;
+  width: 100%;
+  border: 1.25px solid hsl(0deg 0% 85%);
+  border-radius: 4px;
+}
+
+.form-controls input:focus-visible {
+  outline-color:black;
+  outline-width: 4px;
+}
+
+.form-fieldset {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.form-fieldset .form-controls:not(:last-child) {
+  margin-right: 1rem;
+}
+
+.form-fieldset .form-controls {
+  margin-bottom: 0;
 }
