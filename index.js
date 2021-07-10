@@ -1,10 +1,11 @@
 import validator from "./validator.js";
 
-const creditCardElement = document.getElementById("credit-card-input");
+const creditCardElement = document.getElementById("number");
 const maskedCreditCardElement = document.getElementById("masked-credit-card");
 const validationResultElement = document.getElementById("validation-result");
 const containerElement = document.getElementById("creditCardContainer");
 let inFront = true;
+
 creditCardElement.addEventListener("keyup", function () {
   const cardNumber = creditCardElement.value;
 
@@ -15,7 +16,6 @@ creditCardElement.addEventListener("keyup", function () {
     validationResultElement.innerHTML = "credit card is invalid";
     validationResultElement.style.color = "red";
   }
-
   maskedCreditCardElement.innerHTML = validator.maskify(cardNumber);
 });
 
