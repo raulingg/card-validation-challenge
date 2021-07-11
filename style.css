@@ -195,6 +195,7 @@ main {
 
 .form-controls input {
   padding-left: 12px;
+  font-size: 1.5rem;
   height: 3rem;
   width: 100%;
   border: 1.25px solid hsl(0deg 0% 85%);
@@ -209,7 +210,7 @@ main {
 .form-fieldset {
   display: flex;
   flex-direction: row;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
 }
 
@@ -219,4 +220,34 @@ main {
 
 .form-fieldset .form-controls {
   margin-bottom: 0;
+}
+
+.expirationInput {
+  position: relative;
+  display: flex;
+  max-width: 250px;
+  border: 1.25px solid hsl(0deg 0% 85%);
+  border-radius: 4px;
+}
+
+.expirationInput:focus-within {
+  outline: auto;
+}
+
+.expirationInput::after {
+  content: '/';
+  font-size: 2rem;
+  color: hsl(0deg 0% 50%);
+  position: absolute;
+  left: 50%;
+}
+
+.expirationInput input {
+  border: none;
+  padding-left: 0;
+  text-align: center;
+}
+
+.expirationInput input:focus-visible {
+  outline: none;
 }
