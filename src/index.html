@@ -58,9 +58,11 @@
               type="number"
               name="card-number"
               id="number"
-              min="9"
+              maxlength="16"
+              minlength="8"
               placeholder="xxxxxxxx4312"
               required
+              data-behavior="validAndMaskify"
             />
           </div>
           <div class="form-fieldset">
@@ -85,7 +87,7 @@
                   autocomplete="off"
                   maxlength="2"
                   data-behavior="focusSibling"
-                  data-focus-sibling=""
+                  data-focus-sibling="cvv"
                 />
               </div>
             </div>

@@ -1,35 +1,61 @@
 import validator from "./validator.js";
 
-const creditCardElement = document.getElementById("number");
+const formElement = document.querySelector(".form");
+const cvvInput = document.getElementById("cvv");
 const maskedCreditCardElement = document.getElementById("masked-credit-card");
 const validationResultElement = document.getElementById("validation-result");
-const containerElement = document.getElementById("creditCardContainer");
-let inFront = true;
+let creditCardInFront = true;
 
-creditCardElement.addEventListener("keyup", function () {
-  const cardNumber = creditCardElement.value;
+const behaviorsFns = {
+  focusSibling(e) {
+    const siblingId = e.target.dataset.focusSibling;
+    document.getElementById(siblingId).focus();
+  },
+  flipCard() {
+    const creditCardFrontElement = document.getElementById("creditCardFront");
+    const creditCardBackElement = document.getElementById("creditCardBack");
 
-  if (validator.isValid(cardNumber)) {
-    validationResultElement.innerHTML = "Credit card is valid";
-    validationResultElement.style.color = "green";
-  } else {
-    validationResultElement.innerHTML = "credit card is invalid";
-    validationResultElement.style.color = "red";
+    if (creditCardInFront) {
+      creditCardFrontElement.style.transform = "rotateY(180deg)";
+      creditCardBackElement.style.transform = "rotateY(0deg)";
+      creditCardInFront = false;
+    } else {
+      creditCardFrontElement.style.transform = "rotateY(0deg)";
+      creditCardBackElement.style.transform = "rotateY(180deg)";
+      creditCardInFront = true;
+    }
+  },
+  validAndMaskify(e) {
+    const cardNumber = e.target.value;
+
+    if (validator.isValid(cardNumber)) {
+      validationResultElement.innerHTML = "Credit card is valid";
+      validationResultElement.style.color = "green";
+    } else {
+      validationResultElement.innerHTML = "credit card is invalid";
+      validationResultElement.style.color = "red";
+    }
+    maskedCreditCardElement.innerHTML = validator.maskify(cardNumber);
+  },
+};
+
+formElement.addEventListener("keyup", function (e) {
+  const { behavior } = e.target.dataset;
+
+  if (
+    "focusSibling" === behavior &&
+    e.target.value.length === e.target.maxLength
+  ) {
+    behaviorsFns.focusSibling(e);
   }
-  maskedCreditCardElement.innerHTML = validator.maskify(cardNumber);
+
+  if (
+    "validAndMaskify" === behavior &&
+    e.target.value.length >= e.target.minLength
+  ) {
+    behaviorsFns.validAndMaskify(e);
+  }
 });
 
-containerElement.addEventListener("click", function () {
-  const creditCardFrontElement = document.getElementById("creditCardFront");
-  const creditCardBackElement = document.getElementById("creditCardBack");
-
-  if (inFront) {
-    creditCardFrontElement.style.transform = "rotateY(180deg)";
-    creditCardBackElement.style.transform = "rotateY(0deg)";
-    inFront = false;
-  } else {
-    creditCardFrontElement.style.transform = "rotateY(0deg)";
-    creditCardBackElement.style.transform = "rotateY(180deg)";
-    inFront = true;
-  }
-});
+cvvInput.addEventListener("focusin", behaviorsFns.flipCard);
+cvvInput.addEventListener("focusout", behaviorsFns.flipCard);
