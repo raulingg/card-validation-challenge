@@ -65,5 +65,9 @@ describe("validator", () => {
     it('deberia retornar "jcb" para cuando empieza con "1800"', () => {
       expect(validator.getIssuer("180016364607935616")).toBe("jcb");
     });
+
+    it('deberia retornar undefined cuando no se encuentre un issuer"', () => {
+      expect(validator.getIssuer("98313233")).toBe(undefined);
+    });
   });
 });
