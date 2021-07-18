@@ -262,3 +262,41 @@ main {
 .expirationInput input:focus-visible {
   outline: none;
 }
+
+.cardNumberInput {
+  position: relative;
+}
+
+.cardIssuerIcon {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  width: 60px;
+  height: 38px;
+  background-size: cover;
+}
+
+
+.visaIcon {
+  background-image: url(./assets/issuers/visa.svg);
+}
+
+.mastercardIcon {
+  background-image: url(./assets/issuers/mastercard.svg);
+}
+
+.jcbIcon {
+  background-image: url(./assets/issuers/jcb.svg);
+}
+
+.dinners-clubIcon {
+  background-image: url(./assets/issuers/dinners-club.svg);
+}
+
+.discoverIcon {
+  background-image: url(./assets/issuers/discover.svg);
+}
+
+.american-expressIcon {
+  background-image: url(./assets/issuers/american-express.svg);
+}

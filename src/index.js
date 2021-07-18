@@ -4,6 +4,8 @@ const formElement = document.querySelector(".form");
 const cvvInput = document.getElementById("cvv");
 const maskedCreditCardElement = document.getElementById("masked-credit-card");
 const validationResultElement = document.getElementById("validation-result");
+const cardIssuerIconElement = document.querySelector(".cardIssuerIcon");
+
 let creditCardInFront = true;
 
 const behaviorsFns = {
@@ -37,10 +39,21 @@ const behaviorsFns = {
     }
     maskedCreditCardElement.innerHTML = validator.maskify(cardNumber);
   },
+  showCardIssuerIcon(e) {
+    const issuer = validator.getIssuer(e.target.value);
+
+    if (issuer) {
+      cardIssuerIconElement.className = `cardIssuerIcon ${issuer}Icon`;
+    }
+  },
 };
 
 formElement.addEventListener("keyup", function (e) {
   const { behavior } = e.target.dataset;
+
+  if (e.target.id === "number") {
+    behaviorsFns.showCardIssuerIcon(e);
+  }
 
   if (
     "focusSibling" === behavior &&

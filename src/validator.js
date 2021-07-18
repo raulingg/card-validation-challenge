@@ -51,7 +51,6 @@ const validator = {
       "american-express": ["34", "37"],
       discover: ["6011"],
       jcb: ["1800", "3", "2131"],
-      maestro: ["500000", "509999"],
     };
     const issuers = Object.keys(rules);
 

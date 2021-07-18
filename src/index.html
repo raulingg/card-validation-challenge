@@ -54,16 +54,19 @@
             <label for="number">
               <span>Card number</span>
             </label>
-            <input
-              type="number"
-              name="card-number"
-              id="number"
-              maxlength="16"
-              minlength="8"
-              placeholder="xxxxxxxx4312"
-              required
-              data-behavior="validAndMaskify"
-            />
+            <div class="cardNumberInput">
+              <input
+                type="number"
+                name="card-number"
+                id="number"
+                maxlength="16"
+                minlength="8"
+                placeholder="xxxxxxxx4312"
+                required
+                data-behavior="validAndMaskify"
+              />
+              <div class="cardIssuerIcon"></div>
+            </div>
           </div>
           <div class="form-fieldset">
             <div class="form-controls">
