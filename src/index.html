@@ -3,6 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <title>Tarjeta de crédito válida</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -59,8 +60,8 @@
                 type="number"
                 name="card-number"
                 id="number"
-                maxlength="16"
-                minlength="8"
+                min="1000000000000"
+                max="9999999999999999"
                 placeholder="xxxxxxxx4312"
                 required
                 data-behavior="validAndMaskify"
