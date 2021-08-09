@@ -51,7 +51,7 @@ describe("validator", () => {
     });
 
     it('deberia retornar "american-express" para cuando empieza con "34"', () => {
-      expect(validator.getIssuer("3456364607935616")).toBe("american-express");
+      expect(validator.getIssuer("345636460793561")).toBe("american-express");
     });
 
     it('deberia retornar "discover" para cuando empieza con "6011"', () => {

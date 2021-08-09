@@ -1,5 +1,6 @@
 const validator = {
   isValid(cardNumber) {
+    if (!cardNumber) return false;
     // Step 0: Starting at the rightmost side
     const numbers = Array.from(cardNumber).map(Number).reverse();
 
@@ -30,33 +31,47 @@ const validator = {
     return cardNumber;
   },
   getIssuer(cardNumber) {
-    // ref: https://stevemorse.org/ssn/cc.html
+    // ref: https://en.wikipedia.org/wiki/Payment_card_number
     const rules = {
-      visa: ["4"],
-      mastercard: ["51", "52", "53", "54", "55"],
-      "dinners-club": [
-        "2014",
-        "2149",
-        "300",
-        "301",
-        "302",
-        "303",
-        "304",
-        "305",
-        "309",
-        "36",
-        "38",
-        "39",
-      ],
-      "american-express": ["34", "37"],
-      discover: ["6011"],
-      jcb: ["1800", "3", "2131"],
+      "american-express": { IIN_ranges: ["34", "37"], length: [15] },
+      discover: { IIN_ranges: ["6011"], length: [16, 19] },
+      jcb: { IIN_ranges: ["1800", "3", "2131"], length: [16, 19] },
+      visa: { IIN_ranges: ["4"], length: [13, 16] },
+      mastercard: { IIN_ranges: ["51", "52", "53", "54", "55"], length: [16] },
+      "dinners-club": {
+        IIN_ranges: [
+          "2014",
+          "2149",
+          "300",
+          "301",
+          "302",
+          "303",
+          "304",
+          "305",
+          "309",
+          "36",
+          "38",
+          "39",
+        ],
+        length: [14, 19],
+      },
     };
     const issuers = Object.keys(rules);
 
-    return issuers.find((issuer) =>
-      rules[issuer].some((rule) => cardNumber.startsWith(rule))
-    );
+    return issuers.find((issuer) => {
+      const {
+        length: [minLength, maxLength],
+        IIN_ranges,
+      } = rules[issuer];
+
+      return (
+        IIN_ranges.some((rule) => cardNumber.startsWith(rule)) &&
+        ((maxLength &&
+          cardNumber.length >= minLength &&
+          cardNumber.length <= maxLength) ||
+          minLength === cardNumber.length)
+      );
+    });
   },
 };
 
