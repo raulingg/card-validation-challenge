@@ -119,7 +119,6 @@ main {
   height: 54vw;
   max-width: 400px;
   max-height: 251px;
-  margin-right: 2rem;
 }
 
 .creditcard {
@@ -186,7 +185,6 @@ main {
 .form {
   padding: 1rem;
   max-width: 440px;
-  min-width: 400px;
   flex-grow: 1;
 }
 
@@ -241,6 +239,24 @@ main {
   border-radius: 4px;
 }
 
+input.valid, .expirationInput.valid {
+  border-color: forestgreen;
+  background-color: hsl(120deg 100% 95%);
+}
+
+input.invalid, .expirationInput.invalid {
+  border-color: #900;
+  background-color: hsl(0deg 100% 95%);
+}
+
+input:focus.valid,
+input:focus.invalid,
+.expirationInput:focus-within.valid,
+.expirationInput:focus-within.invalid {
+  outline: none;
+  border-width: 2px;
+}
+
 .expirationInput:focus-within {
   outline: auto;
 }
@@ -250,13 +266,14 @@ main {
   font-size: 2rem;
   color: hsl(0deg 0% 50%);
   position: absolute;
-  left: 50%;
+  left: calc(50% - .5rem);
 }
 
 .expirationInput input {
   border: none;
   padding-left: 0;
   text-align: center;
+  background-color: inherit;
 }
 
 .expirationInput input:focus-visible {
@@ -268,35 +285,17 @@ main {
 }
 
 .cardIssuerIcon {
+  width: 60px;
+  height: 38px;
+}
+
+.cardNumberInput .cardIssuerIcon {
   position: absolute;
   top: 6px;
   right: 6px;
-  width: 60px;
-  height: 38px;
-  background-size: cover;
 }
 
-
-.visaIcon {
-  background-image: url(./assets/issuers/visa.svg);
+.logos .cardIssuerIcon {
+  margin-left: auto;
 }
 
-.mastercardIcon {
-  background-image: url(./assets/issuers/mastercard.svg);
-}
-
-.jcbIcon {
-  background-image: url(./assets/issuers/jcb.svg);
-}
-
-.dinners-clubIcon {
-  background-image: url(./assets/issuers/dinners-club.svg);
-}
-
-.discoverIcon {
-  background-image: url(./assets/issuers/discover.svg);
-}
-
-.american-expressIcon {
-  background-image: url(./assets/issuers/american-express.svg);
-}
