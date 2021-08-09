@@ -25,11 +25,7 @@
                 src="./assets/credit-card-chip-svgrepo-com.svg"
                 alt="chip logo"
               />
-              <img
-                class="providerLogo"
-                src="./assets/mc_vrt_pos.svg"
-                alt="mastercard logo"
-              />
+              <div class="cardIssuerIcon"></div>
             </div>
             <p class="creditcard__label">Card Number</p>
             <output id="masked-credit-card" class="creditcard__number">
@@ -39,17 +35,12 @@
             <div class="creditcard__bar"></div>
           </div>
         </div>
-        <div class="form">
+        <form class="form">
           <div class="form-controls">
             <label for="name">
               <span>Full Name</span>
             </label>
-            <input
-              type="text"
-              name="name"
-              id="credit-card-input"
-              placeholder="Joel Black"
-            />
+            <input type="text" name="name" id="name" placeholder="Joel Black" />
           </div>
           <div class="form-controls">
             <label for="number">
@@ -57,12 +48,12 @@
             </label>
             <div class="cardNumberInput">
               <input
-                type="number"
-                name="card-number"
                 id="number"
-                min="1000000000000"
-                max="9999999999999999"
-                placeholder="xxxxxxxx4312"
+                type="text"
+                name="card-number"
+                minlength="13"
+                maxlength="19"
+                placeholder="4543 3456 4566 4646"
                 required
                 data-behavior="validAndMaskify"
               />
@@ -78,18 +69,26 @@
                 <input
                   id="month"
                   name="month"
+                  type="text"
                   required
+                  placeholder="MM"
                   autocomplete="off"
+                  pattern="0[1-9]|1[0-2]"
                   maxlength="2"
+                  title="Enter a number between 01-12"
                   data-behavior="focusSibling"
                   data-focus-sibling="year"
                 />
                 <input
                   id="year"
                   name="year"
+                  type="text"
+                  pattern="2[1-9]|[3-9]{1}[0-9]{1}"
+                  maxlength="2"
+                  placeholder="YY"
                   required
                   autocomplete="off"
-                  maxlength="2"
+                  title="Enter a number between 21-99"
                   data-behavior="focusSibling"
                   data-focus-sibling="cvv"
                 />
@@ -102,14 +101,17 @@
               <input
                 id="cvv"
                 name="cvv"
-                type="number"
+                type="text"
+                placeholder="***"
+                pattern="[0-9]{3,4}"
+                maxlength="4"
+                title="Enter a number between 000-9999"
                 autocomplete="off"
-                maxlength="3"
                 required
               />
             </div>
           </div>
-        </div>
+        </form>
       </div>
       <div class="row">
         <p id="validation-result"></p>
